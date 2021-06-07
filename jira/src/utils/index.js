@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 export const isFlasy = (value) => value === 0 ? false : !value;
 
@@ -21,23 +21,23 @@ export const useMount = callback => {
 
 const debouce = (fn, delay) => {
   let timeout;
-  
-  const fn = function () {
+
+  const D = function () {
     if (timeout) { clearTimeout(timeout); }
     timeout = setTimeout(function () {
       fn && fn();
     }, delay)
   }
 
-  fn.clear = function () {
+  D.clear = function () {
     if (timeout) { clearTimeout(timeout); }
   }
 
-  return fn;
+  return D;
 }
 
 export const useDebounce = (value, delay) => {
-  const [debouceValue, setDebounce] = useState(val);
+  const [debouceValue, setDebounce] = useState(value);
 
   let timeout;
   function clear() {
@@ -45,8 +45,10 @@ export const useDebounce = (value, delay) => {
   }
 
   useEffect(() => {
-    timeout = setTimeout(() => { setDebounce(value); })
-    return clear();
+    timeout = setTimeout(() => {
+      setDebounce(value);
+    }, delay);
+    return clear;
   }, [value, delay])
 
   return debouceValue;
