@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Story, Meta } from '@storybook/react';
 
-import Login from './index';
+import Login from './login';
 
 const meta: Meta = {
   title: "LOGIN",

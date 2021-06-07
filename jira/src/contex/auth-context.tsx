@@ -1,4 +1,4 @@
-import React, { useState, useContext, PropsWithChildren } from 'react';
+import React, { useState, useContext, ReactNode } from 'react';
 
 import * as auth from '../auth-provider';
 import { User } from '../screens/project-list/search-plane';
@@ -16,7 +16,9 @@ const AuthContext = React.createContext<{
 } | undefined>(undefined);
 AuthContext.displayName = "AutoContext";
 
-type AuthProviderProps = PropsWithChildren<{}>;
+interface AuthProviderProps {
+  children?: ReactNode;
+}
 
 export const AuthProvider = function (props: AuthProviderProps) {
 
@@ -37,8 +39,10 @@ export const AuthProvider = function (props: AuthProviderProps) {
     return auth.loginOut().then(() => setUser(null));
   }
 
+  const { children } = props;
+  console.log(children);
   return <AuthContext.Provider value={{ user, login, loginOut, register }}>
-    {props.children}
+    {children}
   </AuthContext.Provider>
 }
 

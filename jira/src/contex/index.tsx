@@ -5,8 +5,9 @@ interface AppProvidersProps {
   children?: ReactNode;
 }
 
-export const AppProviders = (props: AppProvidersProps) => (
-  <AuthProvider>
-    {props.children}
+export const AppProviders = (props: AppProvidersProps) => {
+  const { children } = props;
+  return <AuthProvider>
+    {children}
   </AuthProvider>
-)
+}
