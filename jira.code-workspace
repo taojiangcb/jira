@@ -5,6 +5,9 @@
 		},
 		{
 			"path": "imooc-jira"
+		},
+		{
+			"path": "../document/document"
 		}
 	],
 	"settings": {}
