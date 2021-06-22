@@ -13,15 +13,13 @@ export const cleanObject = (object) => {
   return result;
 }
 
+/*** 构造挂载函数 */
 export const useMount = callback => {
-  useEffect(() => {
-    callback()
-  }, [])
+  useEffect(() => { callback() }, [])
 }
 
 const debouce = (fn, delay) => {
   let timeout;
-
   const D = function () {
     if (timeout) { clearTimeout(timeout); }
     timeout = setTimeout(function () {

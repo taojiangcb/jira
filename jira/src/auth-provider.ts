@@ -1,4 +1,13 @@
 
+
+/**
+ * 用户登录签权处理 
+ *  1. 本地存储 登录的 token
+ * 
+ *  login
+ *  logout 
+ */
+
 import api from './api';
 import { User } from './screens/project-list/search-plane';
 
@@ -6,7 +15,7 @@ const localStoragekey: string = "__auth_provider_token__";
 
 export const getToken = () => window.localStorage.getItem(localStoragekey);
 
-export const handleUserResponse = ((user: User) => {
+export const handleUserResponse = (({ user }: { user: User }) => {
   window.localStorage.setItem(localStoragekey, user.token || "");
   return user;
 })
