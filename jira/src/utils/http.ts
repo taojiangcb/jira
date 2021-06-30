@@ -51,6 +51,8 @@ export const http = async (
 export const useHttp = () => {
   const { user } = useAuth();
   // TODO 讲解 TS 操作符
+  // js 中的 typeof 是在 runtime 运行中执行的
+  // ts 中的 typeof 是在静态运行中执行的。
   return (...[endpoint, config]: Parameters<typeof http>) =>
     http(endpoint, { ...config, token: user?.token });
 };

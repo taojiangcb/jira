@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react"
-
+import React, { useEffect, useState } from "react";
+import { Select, Input, Form } from 'antd';
 
 export interface User {
   id: string;
@@ -7,7 +7,7 @@ export interface User {
   email: string;
   title: string;
   organization: string;
-  token:string;
+  token: string;
 }
 
 interface ParamProps {
@@ -24,19 +24,19 @@ export const SearchPanel = (props: SerachPanelProps) => {
   const { param, setParam, users = [] } = props;
   return <form >
     <div>
-      <input type="text" value={param.name} onChange={evt => setParam({
+      <Input type="text" value={param.name} onChange={evt => setParam({
         ...param,
         name: evt.target.value
       })} />
-      <select value={param.personId} onChange={evt => {
-        console.log(evt.target.value);
-        setParam({ ...param, personId: evt.target.value })
-      }}>
-        <option value={''}>负责人</option>
+      <Select value={param.personId}
+        onChange={value => {
+          setParam({ ...param, personId: value })
+        }}>
+        <Select.Option value={''}>负责人</Select.Option>
         {
-          users && users.map(user => (<option key={user.id} value={user.id}>{user.name}</option>))
+          users && users.map(user => (<Select.Option key={user.id} value={user.id}>{user.name}</Select.Option>))
         }
-      </select>
+      </Select>
     </div>
   </form>
 }
